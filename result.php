@@ -11,11 +11,13 @@ $conn = mysql_connect('localhost', 'root', 'ipshita');
 	}
 	mysql_select_db('trial_fandom');
 	$score = 0;
-	
-if($_POST[$fan] == "HP"){
+	$selectedfan = htmlspecialchars($_POST['$fan']);	
+
+if($selectedfan == "HP"){
 	echo "HP Quiz! <br><br>". "Your results are: <br>";
 	for($x = 1; $x <= 3; $x++){
-		$sql1 = "insert into hp_in(in_ans) values('$_POST["$x"]')";
+		$ans = mysql_real_escape_string($conn, htmlspecialchars($_POST['$x']));
+		$sql1 = "insert into hp_in(in_ans) values('$ans')";
 		if(!mysql_query($sql1, $conn)){
 			die('Error: ' . mysql_error());
 		}
@@ -32,10 +34,11 @@ if($_POST[$fan] == "HP"){
 	}
 }
 
-else if($_POST[$fan] == "LOTR"){
+else if($selectedfan == "LOTR"){
 	echo "LOTR quiz!<br><br>". "Your results are: <br>";
 	for($x = 1; $x <= 3; $x++){
-		$sql1 = "insert into lotr_in(in_ans) values('$_POST["$x"]')";
+		$ans = mysql_real_escape_string($conn, htmlspecialchars($_POST['$x']));
+		$sql1 = "insert into lotr_in(in_ans) values('$ans')";
 		if (!mysql_query($sql1, $conn)){
 			die('Error: ' . mysql_error());
 		}

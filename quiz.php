@@ -5,8 +5,8 @@
 Welcome <?php echo $_POST["name"]; ?>! <br>
 
 <?php
-$name = $_POST["name"];
-$email = $_POST["email"];
+$name = $_POST['name'];
+$email = $_POST['email'];
 $conn = mysql_connect('localhost', 'root', 'ipshita');
 	if(!$conn){
 		die('Connect Error: ' . mysql_error());
